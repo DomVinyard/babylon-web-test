@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import GithubCorner from "react-github-corner";
 
 const consultants = ["doctor", "nurse", "specialist", "therapist"];
 const timeslots = ["Today 12:00", "12:15", "12:30"];
