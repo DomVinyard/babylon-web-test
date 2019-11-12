@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import GithubCorner from "react-github-corner";
+import useWindowSize from "react-use-window-size";
 
 const consultants = ["doctor", "nurse", "specialist", "therapist"];
 const timeslots = ["Today 12:00", "12:15", "12:30"];
@@ -17,6 +18,9 @@ const App = () => {
     alert(JSON.stringify({ selectedConsultant, timeslot, symptoms }));
     clearAll();
   };
+  const { width } = useWindowSize();
+  console.log(width);
+  if (width < 840) return "we're going to need a bigger screen";
   return (
     <div>
       <GithubCorner href="https://github.com/DomVinyard/babylon-web-test" />
