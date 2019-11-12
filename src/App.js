@@ -18,6 +18,7 @@ const App = () => {
   };
   return (
     <div>
+      <GithubCorner href="https://github.com/DomVinyard/babylon-web-test" />
       <Header>
         <img src={"/logo.png"} alt="logo" onClick={() => clearAll()} />
       </Header>
