@@ -23,7 +23,10 @@ const App = () => {
   if (width < 840) return "we're going to need a bigger screen";
   return (
     <div>
-      <GithubCorner href="https://github.com/DomVinyard/babylon-web-test" />
+      <GithubCorner
+        style={{ zIndex: 2, position: "absolute", right: 0, top: 0 }}
+        href="https://github.com/DomVinyard/babylon-web-test"
+      />
       <Header>
         <img src={"/logo.png"} alt="logo" onClick={() => clearAll()} />
       </Header>
@@ -144,7 +147,7 @@ const Avatar = styled.img`
   transition: all 0.3s;
   ${({ hastimeslot, isselected }) =>
     hastimeslot === "true" &&
-    isselected == "false" &&
+    isselected === "false" &&
     `
     transform: scale(0) !important;
     opacity: 0;
