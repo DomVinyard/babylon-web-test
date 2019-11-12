@@ -3,7 +3,7 @@ import logo from "./logo.png";
 import styled from "styled-components";
 
 const App = () => {
-  const [selectedConsultant, setSelectedConsultant] = useState("nurse");
+  const [selectedConsultant, setSelectedConsultant] = useState(false);
   const [timeslot, setTimeslot] = useState(false);
   const [symptoms, setSymptoms] = useState("");
   const consultants = ["doctor", "nurse", "specialist", "therapist"];
