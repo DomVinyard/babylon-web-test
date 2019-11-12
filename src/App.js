@@ -1,26 +1,29 @@
 import React, { useState } from "react";
-import logo from "./logo.png";
 import styled from "styled-components";
+
+const consultants = ["doctor", "nurse", "specialist", "therapist"];
+const timeslots = ["Today 12:00", "12:15", "12:30"];
 
 const App = () => {
   const [selectedConsultant, setSelectedConsultant] = useState(false);
   const [timeslot, setTimeslot] = useState(false);
   const [symptoms, setSymptoms] = useState("");
-  const consultants = ["doctor", "nurse", "specialist", "therapist"];
-  const timeslots = ["Today 12:00", "12:15", "12:30"];
   const clearAll = () => {
     setSelectedConsultant(false);
     setTimeslot(false);
   };
+  const submit = () => {
+    alert(JSON.stringify({ selectedConsultant, timeslot, symptoms }));
+    clearAll();
+  };
   return (
     <div>
       <Header>
-        <img src={logo} alt="logo" onClick={() => clearAll()} />
+        <img src={"/logo.png"} alt="logo" onClick={() => clearAll()} />
       </Header>
       <Main hasselected={!!selectedConsultant}>
         {consultants.map(consultant => {
           const isSelected = selectedConsultant === consultant;
-          // if (timeslot && !isSelected) return null;
           return (
             <Avatar
               key={consultant}
@@ -38,7 +41,7 @@ const App = () => {
           <Buttons>
             <Clear onClick={() => clearAll()}>X</Clear>
             {timeslots.map(slot => (
-              <Timeslot onClick={() => setTimeslot(slot)}>{slot}</Timeslot>
+              <Button onClick={() => setTimeslot(slot)}>{slot}</Button>
             ))}
           </Buttons>
         ) : (
@@ -50,16 +53,9 @@ const App = () => {
             ></Symptoms>
             <div>
               <Clear onClick={() => clearAll()}>X</Clear>
-              <Timeslot
-                onClick={() => {
-                  alert(
-                    JSON.stringify({ selectedConsultant, timeslot, symptoms })
-                  );
-                  clearAll();
-                }}
-              >
-                Confirm {selectedConsultant} at {timeslot}
-              </Timeslot>
+              <Button onClick={() => submit()}>
+                Confirm {timeslot} appointment
+              </Button>
             </div>
           </Buttons>
         )}
@@ -95,8 +91,6 @@ const Button = styled.button`
   }
 `;
 
-const Timeslot = styled(Button)``;
-
 const Clear = styled(Button)`
   color: #ccc;
   &:hover {
@@ -126,7 +120,6 @@ const Header = styled.header`
 const Main = styled.main`
   text-align: center;
   transition: all 0.3s;
-
   ${({ hasselected }) =>
     hasselected &&
     `
@@ -159,8 +152,9 @@ const Avatar = styled.img`
     `
       : hastimeslot === "true"
       ? `
-    transform: scale(1.4) !important;
+      transform: scale(1.4) !important;
       margin-top: -4rem !important;
+      cursor: default ;
     `
       : `
       transform: scale(1.1) !important;
